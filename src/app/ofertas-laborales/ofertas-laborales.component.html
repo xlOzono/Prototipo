@@ -1,0 +1,128 @@
+<div class="container mt-5">
+  <p class="fw-bold fs-1">Ofertas Laborales</p>
+
+  <div class="card">
+    <div class="card-body">Listado de ofertas Laborales</div>
+
+    <div class="m-3">
+      <div
+        *ngFor="let oferta of ofertas; trackBy: trackById"
+        class="row align-items-center g-0"
+      >
+        <div class="col border text-center p-2 m-2">{{ oferta.empresa }}</div>
+        <div class="col border text-center p-2 m-2">{{ oferta.direccion }}</div>
+        <div class="col border text-center p-2 m-2">{{ oferta.cargo }}</div>
+        <div class="col border text-center p-2 m-2">
+          {{ oferta.requisitos }}
+        </div>
+        <div class="col border text-center p-2 m-2">{{ oferta.contacto }}</div>
+        <div class="col border text-center p-2 m-2">
+          {{ oferta.modalidad_trabajo }}
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-primary col btn btn-primary m-2"
+          data-bs-toggle="modal"
+          data-bs-target="#ofertaModal"
+          (click)="open(oferta)"
+        >
+          Seleccionar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal único, SIEMPRE presente en el DOM -->
+<div
+  #ofertaModalRef
+  class="modal fade"
+  id="ofertaModal"
+  tabindex="-1"
+  aria-labelledby="ofertaModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="enviar()" #f="ngForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ofertaModalLabel">
+            {{ selectedOferta?.empresa || "Detalle de oferta" }}
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Cerrar"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">RUT</label>
+            <input
+              type="number"
+              class="form-control"
+              name="rut"
+              [(ngModel)]="form.rut"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Correo</label>
+            <input
+              type="email"
+              class="form-control"
+              name="correo"
+              [(ngModel)]="form.correo"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Teléfono</label>
+            <input
+              type="tel"
+              class="form-control"
+              name="telefono"
+              [(ngModel)]="form.telefono"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Carrera</label>
+            <input
+              type="text"
+              class="form-control"
+              name="carrera"
+              [(ngModel)]="form.carrera"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Adjuntar archivos</label>
+            <input type="file" class="form-control" (change)="onFile($event)" />
+            <!-- sin funcionalidad aún -->
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+            Enviar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
