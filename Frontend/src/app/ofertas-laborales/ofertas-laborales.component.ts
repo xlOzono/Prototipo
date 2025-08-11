@@ -30,6 +30,5 @@ throw new Error('Method not implemented.');
   }
 
   enviar() {
-    // tu lógica
   }
 }
