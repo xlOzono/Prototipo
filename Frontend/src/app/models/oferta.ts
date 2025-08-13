@@ -6,5 +6,5 @@ export interface Oferta {
     requisitos: string;
     duracion: Date;
     contacto: number;
-    modalidad_trabajo: string;
+    modalidadTrabajo: string;
 }

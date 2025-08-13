@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OfertasLaboralesComponent } from './ofertas-laborales/ofertas-laborales.component';
@@ -15,9 +15,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule 
   ],
-  providers: [],
+  providers: [], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

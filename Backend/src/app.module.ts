@@ -1,6 +1,9 @@
 // src/app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Alumnoegresado } from './database/entities/Alumnoegresado';
+import { Postulacion } from './database/entities/Postulacion';
+import { Oferta } from './oferta/entities/Oferta';
 import { OfertaModule } from './oferta/oferta.module';
 
 @Module({
@@ -12,9 +15,10 @@ import { OfertaModule } from './oferta/oferta.module';
       username: 'Admin',
       password: '1234',
       database: 'sistemas',
-      entities: [__dirname + '/database/entities/*.{ts,js}'],
-      synchronize: false,
+      entities: [ Alumnoegresado, Postulacion, Oferta], // ← importante
+      synchronize: true,
       logging: true,
+     
     }),
     OfertaModule,
   ],

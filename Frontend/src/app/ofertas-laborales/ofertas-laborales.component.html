@@ -6,7 +6,7 @@
 
     <div class="m-3">
       <div
-        *ngFor="let oferta of ofertas; trackBy: trackById"
+        *ngFor="let oferta of ListaOfertas; trackBy: trackById"
         class="row align-items-center g-0"
       >
         <div class="col border text-center p-2 m-2">{{ oferta.empresa }}</div>
@@ -17,7 +17,7 @@
         </div>
         <div class="col border text-center p-2 m-2">{{ oferta.contacto }}</div>
         <div class="col border text-center p-2 m-2">
-          {{ oferta.modalidad_trabajo }}
+          {{ oferta.modalidadTrabajo }}
         </div>
 
         <button
@@ -45,7 +45,7 @@
 >
   <div class="modal-dialog">
     <div class="modal-content">
-      <form (ngSubmit)="enviar()" #f="ngForm">
+      <form (ngSubmit)="setRespuesta()" #f="ngForm">
         <div class="modal-header">
           <h5 class="modal-title" id="ofertaModalLabel">
             {{ selectedOferta?.empresa || "Detalle de oferta" }}
@@ -59,6 +59,9 @@
         </div>
 
         <div class="modal-body">
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
           <div class="mb-3">
             <label class="form-label">RUT</label>
             <input
